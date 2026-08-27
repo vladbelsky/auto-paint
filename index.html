@@ -8,26 +8,25 @@
     <style>
         .modal-hidden { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-visible { opacity: 1; pointer-events: auto; transition: opacity 0.3s ease; }
-        /* Плавний скрол */
         html { scroll-behavior: smooth; }
+        /* Стилі для приховування/показу відповідей у FAQ */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans relative pb-24 selection:bg-green-500 selection:text-white">
 
-    <!-- Липка кнопка "Зробити замовлення" (Мобільна адаптація) -->
+    <!-- Липка кнопка -->
     <button id="openOrderModalBtn" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full shadow-[0_10px_25px_rgba(22,163,74,0.5)] z-40 hover:scale-105 active:scale-95 text-lg font-extrabold w-[90%] max-w-sm text-center transition-all duration-200">
         Зробити замовлення
     </button>
 
-    <!-- Перший екран (Темна тема для контрасту) -->
+    <!-- Перший екран -->
     <header class="bg-slate-900 text-white relative overflow-hidden">
-        <!-- Декоративний елемент фону -->
         <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900"></div>
 
         <div class="max-w-6xl mx-auto px-4 py-12 lg:py-20 relative z-10 flex flex-col lg:flex-row items-center gap-10">
-            
-            <!-- Текстовий блок -->
             <div class="w-full lg:w-1/2">
                 <span class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Хіт продажу</span>
                 <h1 class="text-3xl lg:text-5xl font-extrabold leading-tight mb-4">
@@ -48,34 +47,21 @@
                 </ul>
             </div>
             
-            <!-- Медіа та Форма -->
             <div class="w-full lg:w-1/2 flex flex-col gap-6">
-                <!-- Відео процесу (HTML5 Video замість GIF) -->
                 <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-800 bg-black aspect-video relative">
-                    <!-- Плейсхолдер відео (замініть src на своє відео) -->
                     <video autoplay loop muted playsinline class="w-full h-full object-cover">
                         <source src="https://cdn.pixabay.com/video/2020/05/24/40140-424823158_tiny.mp4" type="video/mp4">
-                        Ваш браузер не підтримує відео.
                     </video>
                     <div class="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">Процес нанесення</div>
                 </div>
 
-                <!-- Форма на першому екрані -->
                 <form class="lead-form bg-white p-6 lg:p-8 rounded-2xl shadow-xl text-gray-800">
                     <h3 class="text-xl font-bold mb-4 text-center">Залишити заявку</h3>
                     <div class="space-y-4">
-                        <div>
-                            <input type="text" name="name" placeholder="Ваше ім'я" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
-                        </div>
-                        <div>
-                            <input type="tel" name="phone" placeholder="Ваш телефон" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
-                        </div>
-                        <div>
-                            <input type="text" name="vin" placeholder="VIN-код (необов'язково)" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
-                        </div>
-                        <button type="submit" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition-colors text-lg shadow-lg shadow-green-600/30">
-                            Замовити набір
-                        </button>
+                        <div><input type="text" name="name" placeholder="Ваше ім'я" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                        <div><input type="tel" name="phone" placeholder="Ваш телефон" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                        <div><input type="text" name="vin" placeholder="VIN-код (необов'язково)" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                        <button type="submit" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition-colors text-lg shadow-lg shadow-green-600/30">Замовити набір</button>
                     </div>
                 </form>
             </div>
@@ -83,63 +69,148 @@
     </header>
 
     <!-- Блок "5 в 1" -->
-    <section class="py-16 lg:py-24 bg-white">
+    <section class="py-16 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl lg:text-4xl font-extrabold text-center mb-12 text-gray-900">Що входить у комплект "5 в 1"</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6 text-center">
-                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow"><div class="text-4xl mb-3">🎨</div><p class="font-bold text-gray-900">Фарба</p><p class="text-sm text-gray-500 mt-1">За VIN-кодом</p></div>
-                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow"><div class="text-4xl mb-3">✨</div><p class="font-bold text-gray-900">Лак</p><p class="text-sm text-gray-500 mt-1">Захисний шар</p></div>
-                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow"><div class="text-4xl mb-3">💧</div><p class="font-bold text-gray-900">Знежирювач</p><p class="text-sm text-gray-500 mt-1">Для підготовки</p></div>
-                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow"><div class="text-4xl mb-3">🧻</div><p class="font-bold text-gray-900">Серветка</p><p class="text-sm text-gray-500 mt-1">Безворсова</p></div>
-                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow col-span-2 md:col-span-1"><div class="text-4xl mb-3">🖌️</div><p class="font-bold text-gray-900">Пензлики</p><p class="text-sm text-gray-500 mt-1">Мікробраші</p></div>
+            <h2 class="text-3xl font-extrabold text-center mb-12 text-gray-900">Що входить у комплект "5 в 1"</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><div class="text-4xl mb-3">🎨</div><p class="font-bold">Фарба</p><p class="text-sm text-gray-500">За VIN-кодом</p></div>
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><div class="text-4xl mb-3">✨</div><p class="font-bold">Лак</p><p class="text-sm text-gray-500">Захисний шар</p></div>
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><div class="text-4xl mb-3">💧</div><p class="font-bold">Знежирювач</p><p class="text-sm text-gray-500">Підготовка</p></div>
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100"><div class="text-4xl mb-3">🧻</div><p class="font-bold">Серветка</p><p class="text-sm text-gray-500">Безворсова</p></div>
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 col-span-2 md:col-span-1"><div class="text-4xl mb-3">🖌️</div><p class="font-bold">Пензлики</p><p class="text-sm text-gray-500">Мікробраші</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Інструкція -->
+    <section class="py-16 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-center mb-12 text-gray-900">Як це працює: 3 прості кроки</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                    <div class="absolute -top-5 left-8 bg-green-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">1</div>
+                    <h3 class="text-xl font-bold mb-3 mt-2">Підготовка</h3>
+                    <p class="text-gray-600">Очистіть пошкоджену ділянку від бруду та пилу. Обробіть поверхню знежирювачем за допомогою безворсової серветки з набору.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                    <div class="absolute -top-5 left-8 bg-green-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">2</div>
+                    <h3 class="text-xl font-bold mb-3 mt-2">Нанесення фарби</h3>
+                    <p class="text-gray-600">Ретельно збовтайте флакон. За допомогою мікробраша акуратно заповніть подряпину фарбою. Зачекайте 15-20 хвилин до висихання.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                    <div class="absolute -top-5 left-8 bg-green-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-lg">3</div>
+                    <h3 class="text-xl font-bold mb-3 mt-2">Лакування</h3>
+                    <p class="text-gray-600">Нанесіть захисний прозорий лак поверх висохлої фарби. Це захистить кузов від корозії та вирівняє блиск. Повне висихання — 24 години.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Блок До/Після -->
-    <section class="py-16 lg:py-24 bg-slate-50 border-t border-gray-200">
+    <section class="py-16 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl lg:text-4xl font-extrabold text-center mb-12 text-gray-900">Реальний результат</h2>
+            <h2 class="text-3xl font-extrabold text-center mb-12 text-gray-900">Реальний результат</h2>
             <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
-                <!-- ДО -->
-                <div class="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden group">
+                <div class="bg-slate-50 p-4 rounded-3xl shadow-md border border-gray-100 relative overflow-hidden">
                     <div class="absolute top-6 left-6 bg-red-600 text-white font-black px-4 py-1 rounded-full z-10 shadow-lg">ДО</div>
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?q=80&w=800&auto=format&fit=crop" alt="Подряпина на авто" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?q=80&w=800&auto=format&fit=crop" alt="Подряпина на авто" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-center text-gray-500 mt-4 font-medium">Глибока подряпина до ґрунту</p>
                 </div>
-                <!-- ПІСЛЯ -->
-                <div class="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden group">
+                <div class="bg-slate-50 p-4 rounded-3xl shadow-md border border-gray-100 relative overflow-hidden">
                     <div class="absolute top-6 left-6 bg-green-500 text-white font-black px-4 py-1 rounded-full z-10 shadow-lg">ПІСЛЯ</div>
                     <div class="aspect-[4/3] rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=800&auto=format&fit=crop" alt="Відреставроване авто" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=800&auto=format&fit=crop" alt="Відреставроване авто" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-center text-gray-500 mt-4 font-medium">Після використання набору 5 в 1</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Модальне вікно із формою замовлення -->
+    <!-- Відгуки -->
+    <section class="py-16 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-center mb-12 text-gray-900">Відгуки клієнтів</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 mb-4">"Колір підібрали ідеально за він-кодом (Skoda Octavia, чорний металік). Подряпину на бампері тепер видно тільки якщо придивлятися з 10 см. Рекомендую."</p>
+                    <p class="font-bold text-sm text-gray-900">— Олександр, Київ</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 mb-4">"Дуже зручні мікропензлики в комплекті. Замалював сколи на капоті від камінців. Лак сохне швидко, головне робити все за інструкцією."</p>
+                    <p class="font-bold text-sm text-gray-900">— Максим, Львів</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex text-yellow-400 mb-3">★★★★★</div>
+                    <p class="text-gray-700 mb-4">"Замовляла для чоловіка. Менеджер передзвонив за 5 хвилин, допоміг знайти VIN-код у техпаспорті. Відправили в той же день без передоплати."</p>
+                    <p class="font-bold text-sm text-gray-900">— Олена, Дніпро</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-center mb-10 text-gray-900">Часті питання</h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-5 font-bold cursor-pointer text-gray-900">
+                        Як ви гарантуєте збіг кольору?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">Ми використовуємо професійне колористичне обладнання та бази даних автовиробників. Фарба замішується індивідуально за заводським кодом (VIN), що забезпечує 100% відповідність оригінальному відтінку.</div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-5 font-bold cursor-pointer text-gray-900">
+                        Чи підійде набір для глибоких подряпин до металу?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">Так. Фарба має високу покривну здатність, а захисний лак герметизує пошкодження, запобігаючи появі іржі на оголеному металі.</div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between p-5 font-bold cursor-pointer text-gray-900">
+                        На скільки вистачає одного набору?
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 pt-0 text-gray-600">Об'єм флаконів розрахований на усунення до 30 середніх подряпин або сколів. Термін придатності закритого набору — до 2 років.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="mb-2 font-bold text-white">AutoPaint Ukraine</p>
+            <p class="mb-4">Графік роботи: Пн-Нд, 09:00 - 20:00</p>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="#" class="hover:text-white transition-colors">Політика конфіденційності</a>
+                <a href="#" class="hover:text-white transition-colors">Договір оферти</a>
+            </div>
+            <p>© 2024 Всі права захищено.</p>
+        </div>
+    </footer>
+
+    <!-- Модальне вікно замовлення -->
     <div id="orderModal" class="modal-hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center px-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl transform transition-all">
-            <button id="closeOrderModal" class="absolute top-4 right-5 text-gray-400 hover:text-gray-800 text-3xl font-light transition-colors">&times;</button>
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl">
+            <button id="closeOrderModal" class="absolute top-4 right-5 text-gray-400 hover:text-gray-800 text-3xl font-light">&times;</button>
             <h3 class="text-2xl font-extrabold text-gray-900 mb-2 text-center">Оформлення замовлення</h3>
             <p class="text-center text-gray-500 mb-6 text-sm">Залиште дані, і ми підберемо колір</p>
             <form class="lead-form space-y-4">
-                <div>
-                    <input type="text" name="name" placeholder="Ваше ім'я" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
-                </div>
-                <div>
-                    <input type="tel" name="phone" placeholder="Ваш телефон" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
-                </div>
-                <div>
-                    <input type="text" name="vin" placeholder="VIN-код (необов'язково)" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
-                </div>
-                <button type="submit" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition-colors text-lg shadow-lg shadow-green-600/30 mt-2">
-                    Підтвердити замовлення
-                </button>
+                <div><input type="text" name="name" placeholder="Ваше ім'я" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                <div><input type="tel" name="phone" placeholder="Ваш телефон" required class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                <div><input type="text" name="vin" placeholder="VIN-код (необов'язково)" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition-colors text-lg shadow-lg shadow-green-600/30 mt-2">Підтвердити замовлення</button>
             </form>
         </div>
     </div>
@@ -152,16 +223,15 @@
             </div>
             <h3 class="text-2xl font-extrabold text-gray-900 mb-3">Дякуємо за заявку!</h3>
             <p class="text-gray-600 mb-8 leading-relaxed">Наш менеджер зв'яжеться з вами протягом 5 хвилин для підтвердження замовлення.</p>
-            
             <div class="bg-gray-50 rounded-2xl p-6 mb-6 border border-gray-100">
                 <p class="font-bold text-gray-800 mb-4 text-sm uppercase tracking-wide">Слідкуйте за нами:</p>
                 <div class="flex justify-center gap-3">
-                    <a href="#" class="flex-1 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white py-2 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity">Insta</a>
-                    <a href="#" class="flex-1 bg-[#0088cc] text-white py-2 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity">TG</a>
-                    <a href="#" class="flex-1 bg-[#7360f2] text-white py-2 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity">Viber</a>
+                    <a href="#" class="flex-1 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white py-2 rounded-xl font-bold text-sm hover:opacity-90">Insta</a>
+                    <a href="#" class="flex-1 bg-[#0088cc] text-white py-2 rounded-xl font-bold text-sm hover:opacity-90">TG</a>
+                    <a href="#" class="flex-1 bg-[#7360f2] text-white py-2 rounded-xl font-bold text-sm hover:opacity-90">Viber</a>
                 </div>
             </div>
-            <button id="closeThankYouModal" class="text-gray-400 hover:text-gray-800 font-medium transition-colors">Закрити вікно</button>
+            <button id="closeThankYouModal" class="text-gray-400 hover:text-gray-800 font-medium">Закрити вікно</button>
         </div>
     </div>
 
@@ -169,7 +239,6 @@
         // ВСТАВТЕ ТУТ ВАШ WEBHOOK URL З MAKE.COM
         const makeWebhookUrl = 'https://hook.eu1.make.com/ВАШ_УНІКАЛЬНИЙ_ІДЕНТИФІКАТОР';
 
-        // Управління модальними вікнами
         const orderModal = document.getElementById('orderModal');
         const openOrderModalBtn = document.getElementById('openOrderModalBtn');
         const closeOrderModalBtn = document.getElementById('closeOrderModal');
@@ -190,13 +259,11 @@
         closeOrderModalBtn.addEventListener('click', () => toggleModal(orderModal, false));
         closeThankYouModalBtn.addEventListener('click', () => toggleModal(thankYouModal, false));
 
-        // Закриття по кліку поза вікном
         window.addEventListener('click', (e) => {
             if (e.target === orderModal) toggleModal(orderModal, false);
             if (e.target === thankYouModal) toggleModal(thankYouModal, false);
         });
 
-        // Обробка відправки форм
         const forms = document.querySelectorAll('.lead-form');
         
         forms.forEach(form => {
